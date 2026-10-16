@@ -11,11 +11,10 @@ public import Combine
 struct TickingDialView: View {
 	@State private var dialLevel = 0
 	// Timer fires every 1.5 seconds
-	let timer = Timer.publish(every: 1.5, on: .main, in: .common).autoconnect()
+	let timer = Timer.publish(every: 0.75, on: .main, in: .common).autoconnect()
 
 	var body: some View {
 		Image(systemName: "gauge.with.dots.needle.\(gaugePercent)percent")
-			.symbolEffect(.drawOn)
 			.onReceive(timer) { _ in
 				// Ttiggers automatically on every timer tick!
 				withAnimation(.easeInOut) {

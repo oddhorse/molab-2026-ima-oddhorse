@@ -15,12 +15,15 @@ struct StartView: View {
 		VStack {
 			Image(systemName: "figure.american.football")
 				.imageScale(.large)
+				.symbolEffect(.pulse)
 				//.foregroundStyle(.tint)
+				.padding(4)
 			Text("the great worldwide phone throwing competition")
 				.frame(width: 260)
 
 			Button("throw") {
 				motionCollector.start()
+				motionCollector.startCollection()
 				onStart()
 			}
 			.padding()

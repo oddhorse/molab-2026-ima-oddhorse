@@ -20,6 +20,8 @@ class MotionCollector {
 	
 	var frames: [MotionFrame] = []
 	
+	var collecting = false
+	
 	var onUpdate: (() -> Void) = {}
 	
 	private var currentOrientation: UIDeviceOrientation = .landscapeLeft
@@ -59,9 +61,18 @@ class MotionCollector {
 		(roll, pitch) = currentOrientation.adjustedRollAndPitch(data.attitude)
 		zAcceleration = data.userAcceleration.z
 		
-		frames.append(MotionFrame(motion: data))
+		if collecting { frames.append(MotionFrame(motion: data)) }
 		
 		onUpdate()
+	}
+	
+	func startCollection() {
+		frames = []
+		collecting = true
+	}
+	
+	func stopCollection() {
+		collecting = false
 	}
 	
 	func stop() {

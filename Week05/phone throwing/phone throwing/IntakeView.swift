@@ -15,7 +15,7 @@ struct IntakeView: View {
 		VStack(spacing: 24) {
 			Text("Recording…")
 				.font(.headline)
-
+			TickingDialView()
 			OrientationDataView()
 
 			Button("Stop") {
